@@ -4,10 +4,9 @@
 #
 #-------------------------------------------------
 
-VERSION = 0.1.0.2
-#DEFINES += VER=\'\"$${VERSION}"\'
+VERSION = 0.1.1.3
 VERSTR = '\\"$${VERSION}\\"'
-DEFINES += VER=\"$${VERSTR}\"
+DEFINES += VERSION_STR=\"$${VERSTR}\"
 
 DEFINES += IRS_USE_HID_WIN_API=1
 

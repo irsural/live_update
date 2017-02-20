@@ -115,6 +115,9 @@ MainWindow::MainWindow(QWidget *parent) :
   m_stream_buf.insert(mp_plain_text_edit_buf.get());
   m_timer.start(10);
 
+  setWindowTitle(irs::str_conv<QString>(wstring(L"RES Live Update    ")) +
+    irs::str_conv<QString>(std::string(VERSION_STR)));
+
   IRS_DBG_MSG("Start");
 
   mp_settings->load();

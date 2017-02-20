@@ -15,6 +15,9 @@ irs::string_t value_to_str(transport_protocol_t a_transport_protocol)
     case tp_tcp: {
       return irst("TCP");
     }
+    case tp_usb_hid: {
+      return irst("USB-HID");
+    }
   }
   return irs::string_t();
 }
@@ -26,6 +29,8 @@ transport_protocol_t str_to_value(const irs::string_t& a_str)
     return tp_udp;
   } else if (str == irst("TCP")) {
     return tp_tcp;
+  } else if (str == irst("USB-HID")) {
+    return tp_usb_hid;
   }
   throw std::logic_error("Invalid value");
   return tp_udp;
@@ -80,7 +85,7 @@ void settings_t::save()
     irs::str_conv<QString>(m_device_autoconfig_settings.device_port));
   settings.endGroup();
 
-  settings.beginGroup("hfftp_settings");
+  settings.beginGroup("hfftp_ethernet_settings");
   settings.setValue("transport_protocol",
     irs::str_conv<QString>(value_to_str(m_hfftp_settings.transport_protocol)));
   settings.setValue("local_port",
@@ -110,7 +115,7 @@ void settings_t::load()
     settings.value("device_port", "31002").toString());
   settings.endGroup();
 
-  settings.beginGroup("hfftp_settings");
+  settings.beginGroup("hfftp_ethernet_settings");
   string_type transport_protocol_str = irs::str_conv<string_type>(
     settings.value("transport_protocol",
     irs::str_conv<QString>(value_to_str(tp_udp))).toString());
